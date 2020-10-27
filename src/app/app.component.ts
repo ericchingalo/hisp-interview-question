@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as object from './constants/object.json';
-import * as _ from 'lodash';
 import { JsonObject } from './models/json-object.model';
 
 @Component({
