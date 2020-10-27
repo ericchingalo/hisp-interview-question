@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { getName } from '../helpers/field-name.helper';
 import { getInvertedColumns } from '../helpers/inverted-columns.helper';
 import { TableLayout } from '../models/table-layout.model';
+import { getTableType } from '../helpers/table-type.helper';
 
 @Pipe({
   name: 'tableLayout',
@@ -21,9 +22,7 @@ export class TableLayoutPipe implements PipeTransform {
   transform(json: JsonObject, isInverted: boolean = false): TableLayout {
     let tableHeaders = [];
 
-    const tableType = !isInverted
-      ? `${json.metaData.names.ou} vs ${json.metaData.names.dx}`
-      : `${json.metaData.names.dx} vs ${json.metaData.names.ou}`;
+    const tableType = getTableType(json, isInverted);
     const otherColumns = _.map(
       !isInverted ? json.metaData.dimensions.ou : json.metaData.dimensions.dx,
       (ou) => {
@@ -37,11 +36,9 @@ export class TableLayoutPipe implements PipeTransform {
           return [getName(row[0], json), row[2]];
         })
       : getInvertedColumns(json);
-
-    const table = {
+    return {
       tableHeaders,
       tableRows,
     };
-    return table;
   }
 }
