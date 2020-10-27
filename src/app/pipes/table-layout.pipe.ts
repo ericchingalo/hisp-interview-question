@@ -9,7 +9,16 @@ import { getInvertedColumns } from '../helpers/inverted-columns.helper';
   name: 'tableLayout',
 })
 export class TableLayoutPipe implements PipeTransform {
-  transform(json: JsonObject, isInverted: boolean = false): any {
+  /**
+   * this is the pipe responsible for creating the table object
+   *
+   * @param json json object from which the table is created
+   * @param isInverted a boolean that specifies the orientation of the table
+   */
+  transform(
+    json: JsonObject,
+    isInverted: boolean = false
+  ): { tableHeaders: string[]; tableRows: Array<string[]> } {
     let tableHeaders = [];
 
     const tableType = !isInverted
