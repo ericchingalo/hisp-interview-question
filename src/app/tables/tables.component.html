@@ -1,3 +1,21 @@
-<p>{{ jsonObject | tableLayout | json }}</p>
-
-<p>{{ jsonObject | tableLayout: true | json }}</p>
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th
+          *ngFor="
+            let header of (jsonObject | tableLayout: inverted).tableHeaders
+          "
+          scope="col"
+        >
+          {{ header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rows of (jsonObject | tableLayout: inverted).tableRows">
+        <td *ngFor="let data of rows">{{ data }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

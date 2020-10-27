@@ -1,3 +1,11 @@
 <div class="container">
-  <app-tables [jsonObject]="jsonObject"></app-tables>
+  <div>
+    <h4>Table 1</h4>
+    <app-tables [jsonObject]="jsonObject" [inverted]="false"></app-tables>
+  </div>
+
+  <div>
+    <h4>Table 2</h4>
+    <app-tables [jsonObject]="jsonObject" [inverted]="true"></app-tables>
+  </div>
 </div>

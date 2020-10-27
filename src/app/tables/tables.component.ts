@@ -8,6 +8,7 @@ import { JsonObject } from '../models/json-object.model';
 })
 export class TablesComponent implements OnInit {
   @Input() jsonObject: JsonObject;
+  @Input() inverted: boolean;
   constructor() {}
 
   ngOnInit() {}
