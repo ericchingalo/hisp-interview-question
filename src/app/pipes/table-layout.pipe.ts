@@ -4,6 +4,7 @@ import { JsonObject } from '../models/json-object.model';
 import * as _ from 'lodash';
 import { getName } from '../helpers/field-name.helper';
 import { getInvertedColumns } from '../helpers/inverted-columns.helper';
+import { TableLayout } from '../models/table-layout.model';
 
 @Pipe({
   name: 'tableLayout',
@@ -14,11 +15,10 @@ export class TableLayoutPipe implements PipeTransform {
    *
    * @param json json object from which the table is created
    * @param isInverted a boolean that specifies the orientation of the table
+   *
+   * @returns table layout
    */
-  transform(
-    json: JsonObject,
-    isInverted: boolean = false
-  ): { tableHeaders: string[]; tableRows: Array<string[]> } {
+  transform(json: JsonObject, isInverted: boolean = false): TableLayout {
     let tableHeaders = [];
 
     const tableType = !isInverted
